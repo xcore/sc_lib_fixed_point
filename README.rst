@@ -27,11 +27,12 @@ Key Features
 
 * basic functions: mulsf, divsf, sqrt
 * emulation of manipulation of exponent and mantissa: ldexp, frexp
+* trigonometric functions: sin, cos
 
 To Do
 =====
 
-* trigonometric functions: sin, cos, sinh, cosh
+* trigonometric functions: sinh, cosh
 * exponential functions: exp, log
 * Make 64 bit version, probably 16.48 (blocked by lack of long long in XC)
 * Improve constants to minimise error
