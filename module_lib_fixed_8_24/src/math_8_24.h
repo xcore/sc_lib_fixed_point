@@ -52,7 +52,6 @@ extern _8_24 ldexp_8_24(_8_24 mant, int exp);
 {_8_24,int} frexp_8_24 (_8_24 d);
 
 
-extern _8_24 sine_8_24(_8_24 x, int cosine);
 
 /** sin_8_24
  *
@@ -61,7 +60,7 @@ extern _8_24 sine_8_24(_8_24 x, int cosine);
  * \param x input value in radians
  * \returns sine(x)
  **/
-#define sin_8_24(x) sine_8_24(x, 0)
+extern _8_24 sin_8_24(_8_24 x);
 
 /** cos_8_24
  *
@@ -70,7 +69,7 @@ extern _8_24 sine_8_24(_8_24 x, int cosine);
  * \param x input value in radians
  * \returns cosine(x)
  **/
-#define cos_8_24(x) sine_8_24(x, 1)
+#define cos_8_24(x) sin_8_24(x+PIHALF)
 
 extern _8_24 sineh_8_24(_8_24 x, int cosine);
 
