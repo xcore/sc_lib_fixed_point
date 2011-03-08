@@ -5,10 +5,13 @@ Fixed point library
   unreleased
 
 :Status:
-  Preliminary functionality with 32-bit arithmetic only
+  Preliminary functionality with 32-bit arithmetic only. Trig to follow soon.
+
+:Description:
+  Fixed point library
 
 :Maintainer:
-  henkmuller
+  https://github.com/henkmuller
 
 
 This is a library of functions that implement standard mathematical
@@ -22,19 +25,19 @@ More details to follow in the doc directory.
 Key Features
 ============
 
-   * trigonometric functions: sin, cos, sinh, cosh
-   * exponential functions: exp, log
-   * basic functions: mulsf, divsf, sqrt
-   * emulation of manipulation of exponent and mantissa: ldexp, frexp
+* basic functions: mulsf, divsf, sqrt
+* emulation of manipulation of exponent and mantissa: ldexp, frexp
 
 To Do
 =====
 
-   * Make 64 bit version, probably 16.48 (blocked by lack of long long in XC)
-   * Improve constants to minimise error
-   * Add other mathematical functions (errf etc)
-   * Add optional check on overflows (with a compile time flag for code that has size constraints)
-   * Add optional check on domain errors, eg. sqrt(-1)
+* trigonometric functions: sin, cos, sinh, cosh
+* exponential functions: exp, log
+* Make 64 bit version, probably 16.48 (blocked by lack of long long in XC)
+* Improve constants to minimise error
+* Add other mathematical functions (errf etc)
+* Add optional check on overflows (with a compile time flag for code that has size constraints)
+* Add optional check on domain errors, eg. sqrt(-1)
 
 Firmware Overview
 =================
@@ -55,7 +58,7 @@ none
 Required Repositories
 =====================
 
-   * xcommon git\@github.com:xmos/xcommon.git
+* xcommon git\@github.com:xmos/xcommon.git
 
 Support
 =======
