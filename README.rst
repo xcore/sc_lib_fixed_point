@@ -25,7 +25,7 @@ More details to follow in the doc directory.
 Key Features
 ============
 
-* basic functions: mulsf, divsf, sqrt
+* basic functions: mul, div, sqrt
 * emulation of manipulation of exponent and mantissa: ldexp, frexp
 * trigonometric functions: sin, cos
 
@@ -39,6 +39,7 @@ To Do
 * Add other mathematical functions (errf etc)
 * Add optional check on overflows (with a compile time flag for code that has size constraints)
 * Add optional check on domain errors, eg. sqrt(-1)
+* Run minimiser over errors in order to improve coefficients for our domain.
 
 Firmware Overview
 =================
