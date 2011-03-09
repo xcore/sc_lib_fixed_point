@@ -1,4 +1,4 @@
-#include "math_8_24.h"
+#include "mathf8_24.h"
 
 /******************************************************************
  * The coefficients were derived from the floating point code in newlib,
@@ -12,10 +12,10 @@
 #define r2    -3323
 #define r3       44
 
-_8_24 sin_8_24(_8_24 rad) {
+f8_24 sinf8_24(f8_24 rad) {
     int finalSign;
     int modulo;
-    _8_24 sqr;
+    f8_24 sqr;
 
     // Now just compute a sine.
     if (rad < 0) {
@@ -26,7 +26,7 @@ _8_24 sin_8_24(_8_24 rad) {
     }
     // Now rad >= 0.
 
-    modulo = _8_242int(mul_8_24(rad, ONE_OVER_HALFPI));
+    modulo = f8_242int(mulf8_24(rad, ONE_OVER_HALFPI));
     rad -= (modulo >> 2) * PI2;
     if (modulo & 2) {
         finalSign = -finalSign;
@@ -35,6 +35,6 @@ _8_24 sin_8_24(_8_24 rad) {
     if (modulo & 1) {
         rad = (PI2>>1) - rad;
     }
-    sqr = mul_8_24(rad, rad);
-    return (rad + mul_8_24(mul_8_24(mul_8_24(mul_8_24(mul_8_24(r3, sqr) + r2, sqr) + r1, sqr) + r0, sqr), rad)) * finalSign;
+    sqr = mulf8_24(rad, rad);
+    return (rad + mulf8_24(mulf8_24(mulf8_24(mulf8_24(mulf8_24(r3, sqr) + r2, sqr) + r1, sqr) + r0, sqr), rad)) * finalSign;
 }

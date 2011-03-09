@@ -1,24 +1,24 @@
-#include "math_8_24.h"
+#include "mathf8_24.h"
 #include <print.h>
 
-void print_8_24(_8_24 x) {
+void printf8_24(f8_24 x) {
     int N;
     if (x < 0) {
         printchar('-');
         x = -x;
     }
-    N = _8_242int(x);
+    N = f8_242int(x);
     printint(N);
     printstr(".");
     for(int i = 0; i < 8; i++) {
-        x = x - int2_8_24(N);
+        x = x - int2f8_24(N);
         x = x * 10;
-        N = _8_242int(x);
+        N = f8_242int(x);
         printchar(N+'0');
     }
 }
 
-void print_8_24ln(_8_24 x) {
-    print_8_24(x);
+void printf8_24ln(f8_24 x) {
+    printf8_24(x);
     printchar('\n');
 }

@@ -1,4 +1,4 @@
-#include "math_8_24.h"
+#include "mathf8_24.h"
 #include "print.h"
 
 static int lookup[8] = {
@@ -13,11 +13,11 @@ static int lookup[8] = {
 };
 
 #pragma unsafe arrays
-_8_24 sqrt_8_24(_8_24 x) {
+f8_24 sqrtf8_24(f8_24 x) {
     int exp;
     int zeroes;
-    _8_24 approx;
-    _8_24 corr;
+    f8_24 approx;
+    f8_24 corr;
 
     if (x <= 0) {
         return 0;
@@ -32,7 +32,7 @@ _8_24 sqrt_8_24(_8_24 x) {
         approx <<= ((6-zeroes) >> 1);
     }
     for(int i = 0; i < 3; i++) {
-        corr = div_8_24(mul_8_24(approx,approx) - x, approx) >> 1;
+        corr = divf8_24(mulf8_24(approx,approx) - x, approx) >> 1;
         approx -= corr;
     }
     return approx;
