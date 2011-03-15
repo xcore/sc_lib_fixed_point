@@ -14,7 +14,6 @@ static int lookup[8] = {
 
 #pragma unsafe arrays
 f8_24 sqrtf8_24(f8_24 x) {
-    int exp;
     int zeroes;
     f8_24 approx;
     f8_24 corr;
