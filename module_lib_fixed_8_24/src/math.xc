@@ -61,3 +61,14 @@ f8_24 ldexpf8_24(f8_24 a, int exp) {
     
     return {exp < 0 ? d << (-exp) : d >> exp, exp};
 }
+
+f8_24 reducef8_24(int ynh, unsigned ynl) {
+    if (sext(ynh,MATHF8_24_BITS) == ynh) {
+        return (ynh << MATHF8_24_IBITS) | (((unsigned) ynl) >> MATHF8_24_BITS);
+    } else if (ynh < 0) {
+        return MINF8_24;
+    } else {
+        return MAXF8_24;
+    }
+}
+

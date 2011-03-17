@@ -1,8 +1,12 @@
 #define MATHF8_24_BITS 24
+#define MATHF8_24_IBITS (32-MATHF8_24_BITS)
 #define HALF    (1<<(MATHF8_24_BITS-1))
 #define ONE     (HALF * 2)
 #define PI2     105414357
 #define PIHALF   26353589
+
+#define MINF8_24 0x80000000   // -128.000000000000000000000000
+#define MAXF8_24 0x7FFFFFFF   //  127.999999940395355224609375
 
 /*
  * Basic fixed point type is an integer.
@@ -89,6 +93,19 @@ extern f8_24 logf8_24(f8_24 x);
 extern f8_24 log10f8_24(f8_24 x);
 
 
+
+
+/** reducef8_24
+ *
+ * Returns the "middle" 8.24 bits form a 16.48 word. Useful for picking an
+ * answer out of a series of multiply accumulates. If an overflow has
+ * happened, the result is saturated to MINF8_24 or MAXF8_24
+ *
+ * \param h high input word twos complement 16.16 number
+ * \param l low input word to be concatenated with h to form 16.48 number
+ * \returns saturated (h:l)[bits 8..40]
+ **/
+f8_24 reducef8_24(int ynh, unsigned ynl);
 
 
 extern void printf8_24(f8_24 x);
