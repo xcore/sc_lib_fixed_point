@@ -115,3 +115,4 @@ extern void printf8_24ln(f8_24 x);
 
 #define int2f8_24(a) (a << MATHF8_24_BITS)
 
+f8_24 froundf8_24(f8_24 x);

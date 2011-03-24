@@ -1,16 +1,15 @@
 #include "mathf8_24.h"
 
 /******************************************************************
- * The coefficients were derived from the floating point code in newlib,
- * which in turn were derived from "Software Manual for the Elementary
- * Functions" by Cody and Waite
+ * Derived from "Software Manual for the Elementary
+ * Functions" by Cody and Waite, fixed point sin/cos chapter.
  ******************************************************************/
 
 #define ONE_OVER_HALFPI 10680707
-#define r0 -2796201
-#define r1   139805
-#define r2    -3323
-#define r3       44
+#define r0 -11184804
+#define r1   2236879
+#define r2   -212681
+#define r3     11175
 
 f8_24 sinf8_24(f8_24 rad) {
     int finalSign;
@@ -35,6 +34,6 @@ f8_24 sinf8_24(f8_24 rad) {
     if (modulo & 1) {
         rad = (PI2>>1) - rad;
     }
-    sqr = mulf8_24(rad, rad);
+    sqr = mulf8_24(rad/2, rad/2);
     return (rad + mulf8_24(mulf8_24(mulf8_24(mulf8_24(mulf8_24(r3, sqr) + r2, sqr) + r1, sqr) + r0, sqr), rad)) * finalSign;
 }
