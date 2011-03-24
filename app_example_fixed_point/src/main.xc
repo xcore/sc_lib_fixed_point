@@ -4,6 +4,14 @@
 int main(void) {
 //        printf8_24(expf8_24(1<<24));
 //        return 0;
+    for(int k = 0; k <= 64; k++) {
+        int i = k * ONE/8;
+        printf8_24(i);
+        printstr(" ");
+        printf8_24(logf8_24(i));
+        printstr("\n");
+    }
+    return 0;
     printf8_24ln(reducef8_24(0xA0000001,0));
     printf8_24ln(reducef8_24(0xF8000001,0));
     printf8_24ln(reducef8_24(0xFF800001,0));
