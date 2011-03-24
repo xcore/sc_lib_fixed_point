@@ -28,12 +28,13 @@ Key Features
 * basic functions: mul, div, sqrt
 * emulation of manipulation of exponent and mantissa: ldexp, frexp
 * trigonometric functions: sin, cos
-* exponential functions: exp, log (needs debugging)
+* exponential functions: exp, log
 
 To Do
 =====
 
-* Debug log().
+* Make test harness
+* Systematic tests of all functions (eg, compared to double precision C).
 * trigonometric functions: sinh, cosh
 * Make 64 bit version, probably 16.48 (blocked by lack of long long in XC)
 * Improve constants to minimise error
