@@ -1,6 +1,6 @@
 Software License Agreement
 
-Copyright (c) 2011, <insert copyright holder here>, All rights reserved.
+Copyright (c) 2011, XMOS Ltd, All rights reserved.
 
 The copyright holders hereby grant to any person obtaining a copy of this software (the "Software") and/or its associated 
 documentation files (the Documentation), the perpetual, irrevocable (except in the case of breach of this license) no-cost, 
