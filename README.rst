@@ -46,11 +46,11 @@ Firmware Overview
 =================
 
 A collection of functions, all stored in a single module. The function
-names are suffixed with ``sf`` to denote that these are single precision
+names are suffixed with ``f8_24`` to denote that these are single precision
 fixed point functions. There are some obvious dependencies, mostly on ldexp
 and frexp.
 
-Two extra functions, mulsf and divsf perform multiplication and division on
+Two extra functions, mulf8_24 and divf8_24 perform multiplication and division on
 fixed point numbers.
 
 Known Issues

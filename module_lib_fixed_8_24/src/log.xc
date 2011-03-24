@@ -3,8 +3,7 @@
 
 /******************************************************************
  * Derived from "Software Manual for the Elementary
- * Functions" by Cody and Waite. Can be improved for N>0, in that
- * the last few bits are always zero and oughtn't be.
+ * Functions" by Cody and Waite. Needs systematic testing.
  ******************************************************************/
 
 #define ONE_OVER_LN2 24204406
@@ -41,7 +40,7 @@ f8_24 logf8_24(f8_24 x) {
     w = mulf8_24(z, z);
     Bw = mulf8_24(b1, w) + b0;
     Aw = a0;
-    rz2 = mulf8_24(2, C + divf8_24(Aw, Bw));
+    rz2 = mulf8_24(w, C + divf8_24(Aw, Bw));
     v = divf8_24(HALF>>1, zden);
     qz = v + mulf8_24(rz2, v);
     rz = mulf8_24(4*y, qz);
