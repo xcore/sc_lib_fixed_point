@@ -8,6 +8,8 @@
 
 extern int logC(int x);
 extern int expC(int x);
+extern int sinhC(int x);
+extern int coshC(int x);
 
 int tester(int func, int data) {
     switch(func) {
@@ -15,7 +17,12 @@ int tester(int func, int data) {
     case 1: return expC(data);
     case 2: return logf8_24(data);
     case 3: return logC(data);
+    case 4: return sinhf8_24(data);
+    case 5: return sinhC(data);
+    case 6: return coshf8_24(data);
+    case 7: return coshC(data);
     }
+    return MINF8_24
 }
 
 void test(int func, char name[]) {    
@@ -23,12 +30,15 @@ void test(int func, char name[]) {
     for(int k = 0; k < 31; k++) {
         hist[k] = 0;
     }
-    for(int k = 0; k <= 4096; k++) {
+    for(int k = 0; k <= 4096; k+=64) {
         timer t;
         int t0, t1, t2, t3, z, err, zc;
         int i = HALF + (k * (HALF >> 12));
-        z = tester(func,i);
         zc = tester(func|1,i);
+        if (zc == MINF8_24) {
+            continue;
+        }
+        z = tester(func,i);
         err = z - zc;
         
         if (err > 15 || err < -15) { // accept error in last bit
@@ -58,7 +68,7 @@ int main(void) {
 //        printf8_24(expf8_24(1<<24));
 //        return 0;
 //    test(0,"");
-//    test(2, "");
+    test(4, "");
     for(int k = -64; k <= 64; k++) {
         int i = k * PIHALF / 8;
         printf8_24(i);

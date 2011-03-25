@@ -28,14 +28,13 @@ Key Features
 * basic functions: mul, div, sqrt
 * emulation of manipulation of exponent and mantissa: ldexp, frexp
 * trigonometric functions: sin, cos
-* exponential functions: exp, log
+* exponential functions: exp, log, sinh, cosh
 
 To Do
 =====
 
 * Make test harness
 * Systematic tests of all functions (eg, compared to double precision C).
-* trigonometric functions: sinh, cosh
 * Make 64 bit version, probably 16.48 (blocked by lack of long long in XC)
 * Run minimiser over errors in order to improve coefficients for our domain.
 * Add other mathematical functions (errf etc)
