@@ -22,18 +22,20 @@ int tester(int func, int data) {
     case 6: return coshf8_24(data);
     case 7: return coshC(data);
     }
-    return MINF8_24
+    return MINF8_24;
 }
 
-void test(int func, char name[]) {    
+void test(int func, char name[], int min, int max) {    
     int hist[31];
+    printstr("Testing ");
+    printstrln(name);
     for(int k = 0; k < 31; k++) {
         hist[k] = 0;
     }
-    for(int k = 0; k <= 4096; k+=64) {
+    for(int k = 0; k <= 64; k++) {
         timer t;
         int t0, t1, t2, t3, z, err, zc;
-        int i = HALF + (k * (HALF >> 12));
+        int i = min + (((unsigned)(max - min))>>6) * k;
         zc = tester(func|1,i);
         if (zc == MINF8_24) {
             continue;
@@ -42,18 +44,19 @@ void test(int func, char name[]) {
         err = z - zc;
         
         if (err > 15 || err < -15) { // accept error in last bit
+            printstr("Error more than 4 bits: ");
             printf8_24(i);
             printstr(" ");
             printf8_24(z);
             printstr(" ");
             printf8_24(zc);
             printstr(" ");
-            printf8_24(err);
-            printstr(" error more than 4 bit\n");
+            printf8_24ln(err);
         } else {
             hist[err+15]++;
         }
     }
+    printstr("Histogram of errors\n");
     for(int k = 0; k < 31; k++) {
         if (hist[k] != 0) {
             printf8_24(k-15);
@@ -65,10 +68,11 @@ void test(int func, char name[]) {
 
 
 int main(void) {
-//        printf8_24(expf8_24(1<<24));
-//        return 0;
-//    test(0,"");
-    test(4, "");
+//    test(0,"exp", MINF8_24, 4*ONE);
+//    test(2,"log", 1, MAXF8_24);
+    test(4,"sinh", -11*ONE>>1, 11*ONE>>1);
+    test(6,"cosh", -11*ONE>>1, 11*ONE>>1);
+    return 0;
     for(int k = -64; k <= 64; k++) {
         int i = k * PIHALF / 8;
         printf8_24(i);
