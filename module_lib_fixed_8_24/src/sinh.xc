@@ -18,7 +18,6 @@
 #define p2       3422
 
 
-
 f8_24 sinehf8_24(f8_24 X, int cosine) {
     f8_24 Y, R, W, Z;
     int negative = 1;

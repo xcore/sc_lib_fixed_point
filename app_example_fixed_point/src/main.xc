@@ -11,6 +11,8 @@ extern int expC(int x);
 extern int sinhC(int x);
 extern int coshC(int x);
 
+f8_24 exp2f8_24(f8_24 x);
+
 int tester(int func, int data) {
     switch(func) {
     case 0: return expf8_24(data);
@@ -32,10 +34,10 @@ void test(int func, char name[], int min, int max) {
     for(int k = 0; k < 31; k++) {
         hist[k] = 0;
     }
-    for(int k = 0; k <= 64; k++) {
+    for(int k = 0; k <= 256; k++) {
         timer t;
         int t0, t1, t2, t3, z, err, zc;
-        int i = min + (((unsigned)(max - min))>>6) * k;
+        int i = min + (((unsigned)(max - min))>>8) * k;
         zc = tester(func|1,i);
         if (zc == MINF8_24) {
             continue;
@@ -66,28 +68,20 @@ void test(int func, char name[], int min, int max) {
     }
 }
 
-
 int main(void) {
-//    test(0,"exp", MINF8_24, 4*ONE);
+    test(0,"exp", MINF8_24, 4*ONE);
 //    test(2,"log", 1, MAXF8_24);
     test(4,"sinh", -11*ONE>>1, 11*ONE>>1);
-    test(6,"cosh", -11*ONE>>1, 11*ONE>>1);
+//    test(6,"cosh", -11*ONE>>1, 11*ONE>>1);
     return 0;
-    for(int k = -64; k <= 64; k++) {
+    for(int k = -8; k <= 23; k++) {
         int i = k * PIHALF / 8;
+        f8_24 c = expC(i);
         printf8_24(i);
         printstr(" ");
-        printf8_24(sinf8_24(i));
+        printf8_24(expf8_24(i) - c);
         printstr(" ");
-        printf8_24(cosf8_24(i));
-        printstr(" ");
-        printf8_24(sqrtf8_24(i));
-        printstr(" ");
-        printf8_24(expf8_24(i));
-        printstr(" ");
-        printf8_24(sinhf8_24(i));
-        printstr(" ");
-        printf8_24(coshf8_24(i));
+        printf8_24(c);
         printstr("\n");
     }
     return 0;

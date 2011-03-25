@@ -16,6 +16,27 @@
 #define ONE_OVER_LN2 24204406
 #define C1  11632640
 #define C2     -3560
+
+#define p0a   67108864
+#define p1a    1116769
+#define q0a    (ONE*8)
+#define q1a   13418331
+
+
+f8_24 expf8_24(f8_24 x) {
+    f8_24  XN = froundf8_24(mulf8_24(x,ONE_OVER_LN2));
+    int N = f8_242int(XN);
+    f8_24 g = (x - N*C1) - N*C2;
+    f8_24 z = mulf8_24(g,g);
+    f8_24 gP = mulf8_24(mulf8_24(p1a, z) + p0a, g);
+    f8_24 Q = mulf8_24(q1a, z) + q0a;
+    f8_24 r = (ONE<<1) + (divf8_24(gP<<1, (Q - gP)>>1));
+//    N++;
+    N--;
+    return N > 0 ? (r<<N)+(1<<(N-1)) : (r+(1<<(-N-1))) >> -N;
+}
+
+
 #define p0   4194304
 #define p1     69798
 #define q0   8388608
@@ -23,7 +44,7 @@
 
 
 
-f8_24 expf8_24(f8_24 x) {
+f8_24 expf8_24_orig(f8_24 x) {
     f8_24  XN = froundf8_24(mulf8_24(x,ONE_OVER_LN2));
     int N = f8_242int(XN);
     f8_24 g = (x - N*C1) - N*C2;

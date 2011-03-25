@@ -17,7 +17,7 @@ f8_24 fabsf8_24(f8_24 x) {
 }
 
 f8_24 froundf8_24(f8_24 x) {
-    return x + HALF & ~(ONE-1);
+    return (x + HALF) & ~(ONE-1);
 }
 
 f8_24 mulf8_24(f8_24 a, f8_24 b) {
