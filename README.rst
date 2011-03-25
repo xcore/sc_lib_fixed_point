@@ -37,11 +37,10 @@ To Do
 * Systematic tests of all functions (eg, compared to double precision C).
 * trigonometric functions: sinh, cosh
 * Make 64 bit version, probably 16.48 (blocked by lack of long long in XC)
-* Improve constants to minimise error
+* Run minimiser over errors in order to improve coefficients for our domain.
 * Add other mathematical functions (errf etc)
 * Add optional check on overflows (with a compile time flag for code that has size constraints)
 * Add optional check on domain errors, eg. sqrt(-1)
-* Run minimiser over errors in order to improve coefficients for our domain.
 
 Firmware Overview
 =================

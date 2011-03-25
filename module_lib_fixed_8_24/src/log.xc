@@ -13,7 +13,7 @@
 
 #define ONE_OVER_LN2 24204406
 
-#define C0   3474675
+#define C0   (HALF + 3474675)
 #define C     228186
 
 #define a0    815851
@@ -26,22 +26,19 @@
 
 
 f8_24 logf8_24(f8_24 x) {
-    f8_24 f, znum, zden, y, Bw, Aw, rz2, v, qz, rz, z, w;
+    f8_24 f, zden, y, Bw, Aw, rz2, v, qz, rz, z, w;
     int N;
     {f, N} = frexpf8_24 (x);
 
-    y = f - HALF;
-    znum = y;
-    zden = (znum >> 1) + HALF;
-
-    if (znum < C0) {
+    if (f < C0) {
+        y = f - HALF;
+        zden = (y >> 1) + HALF;
         N--;
     } else {
-        y = y - HALF;
-        znum = znum - HALF;
-        zden = zden + (HALF>>1);
+        y = f - ONE;
+        zden = (y >> 1) + ONE;
     }
-    z = divf8_24(znum, zden);
+    z = divf8_24(y, zden);
     w = mulf8_24(z, z);
     Bw = mulf8_24(b1, w) + b0;
     Aw = a0;

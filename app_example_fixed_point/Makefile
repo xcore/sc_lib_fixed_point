@@ -19,6 +19,7 @@ APP_NAME = app_example_fixed_point
 # xcc for the final link (mapping) stage.
 
 XCC_FLAGS = -O2
+XCC_MAP_FLAGS = -lm
 
 # The USED_MODULES variable lists other module used by the application. 
 
