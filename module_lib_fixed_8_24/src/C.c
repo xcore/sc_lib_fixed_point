@@ -34,3 +34,8 @@ int cosC(int x) {
     double z = (double) x / (double) (1<<24);
     return roundTrunc((1<<24)*cos(z));
 }
+
+int sqrtC(int x) {
+    double z = (double) x / (double) (1<<24);
+    return roundTrunc((1<<24)*sqrt(z));
+}

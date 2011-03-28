@@ -12,6 +12,7 @@ extern int sinhC(int x);
 extern int coshC(int x);
 extern int sinC(int x);
 extern int cosC(int x);
+extern int sqrtC(int x);
 
 #define STEPS 10
 
@@ -29,6 +30,8 @@ int tester(int func, int data) {
     case  9: return sinC(data);
     case 10: return cosf8_24(data);
     case 11: return cosC(data);
+    case 12: return sqrtf8_24(data);
+    case 13: return sqrtC(data);
     }
     return MINF8_24;
 }
@@ -102,12 +105,13 @@ int main(void) {
     printstr("Testing will take approx ");
     printint(10 << (STEPS-8));
     printstr(" minutes\n");
-//    fail = test(0,"exp", MINF8_24, 4*ONE, -12, 5, 990);
-//    fail += test(2,"log", 1, MAXF8_24, -2, 2, 906);
-//    fail += test(4,"sinh", -11*ONE>>1, 11*ONE>>1, -40, 40, 600);  // Should aim for -4 4 800
-//    fail += test(6,"cosh", -11*ONE>>1, 11*ONE>>1, -40, 40, 600);  // Should aim for -4 4, 800
+    fail = test(0,"exp", MINF8_24, 4*ONE, -12, 5, 990);
+    fail += test(2,"log", 1, MAXF8_24, -2, 2, 906);
+    fail += test(4,"sinh", -11*ONE>>1, 11*ONE>>1, -40, 40, 600);  // Should aim for -4 4 800
+    fail += test(6,"cosh", -11*ONE>>1, 11*ONE>>1, -40, 40, 600);  // Should aim for -4 4, 800
     fail += test(8,"sin", -2*PI2, MAXF8_24, -3, 3, 955);
     fail += test(10,"cos", -2*PI2, MAXF8_24-2*PI2, -3, 3, 960);
+    fail += test(12,"sqrt", 0, MAXF8_24, -1, 1, 1000);
     if (fail != 0) {
         printint(fail);
         printstr(" failures\n");
