@@ -21,9 +21,6 @@
 #define p1     139753
 #define p2       3422
 
-
-extern int expC(int X);
-
 f8_24 sinehf8_24(f8_24 X, int cosine) {
     f8_24 Y, R, W, Z;
     int negative = 1;
@@ -37,11 +34,9 @@ f8_24 sinehf8_24(f8_24 X, int cosine) {
         if (Y > YBAR) {
             W = Y - LN2;
             Z = expf8_24(W);
-            Z = expC(W);
             R = Z + (cosine?1:-1) * divf8_24(ONE/4, Z) ;
         } else {
             Z = expf8_24(Y);
-            Z = expC(Y);
             R = (Z + (cosine?1:-1) * divf8_24(ONE, Z)) >> 1;
         }
         R = R * negative;
