@@ -22,7 +22,12 @@
 #define q0a    (ONE*8)
 #define q1a   13418331
 
-
+/*
+ * This function can be further improved by making C2 a constant in 3.29 format.
+ * The current function will have an error in the 21st or 22nd bit of the fraction after
+ * a modulo of a large number. However, this would require mulf3_29 functions adding code
+ * size. I think it is better to stick to a slightly less accurate version for now.
+ */
 f8_24 expf8_24(f8_24 x) {
     f8_24  XN = froundf8_24(mulf8_24(x,ONE_OVER_LN2));
     int N = f8_242int(XN);
@@ -36,13 +41,12 @@ f8_24 expf8_24(f8_24 x) {
     return N > 0 ? (r<<N)+(1<<(N-1)) : (r+(1<<(-N-1))) >> -N;
 }
 
+#if 0
 
 #define p0   4194304
 #define p1     69798
 #define q0   8388608
 #define q1    838646
-
-
 
 f8_24 expf8_24_orig(f8_24 x) {
     f8_24  XN = froundf8_24(mulf8_24(x,ONE_OVER_LN2));
@@ -55,3 +59,5 @@ f8_24 expf8_24_orig(f8_24 x) {
     N++;
     return N > 0 ? (r<<N)+(1<<(N-1)) : (r+(1<<(-N-1))) >> -N;
 }
+
+#endif
