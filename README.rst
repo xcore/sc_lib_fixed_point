@@ -5,7 +5,7 @@ Fixed point library
   unreleased
 
 :Status:
-  Preliminary functionality with 32-bit arithmetic only. Trig to follow soon.
+  32-bit 8.24 feature complete.
 
 :Description:
   Fixed point library
@@ -29,15 +29,15 @@ Key Features
 * emulation of manipulation of exponent and mantissa: ldexp, frexp
 * trigonometric functions: sin, cos
 * exponential functions: exp, log, sinh, cosh
+* test harness that checks on precision against double precision C.
 
 To Do
 =====
 
-* Make test harness
-* Systematic tests of all functions (eg, compared to double precision C).
+* Get size and speed into test harness.
 * Make 64 bit version, probably 16.48 (blocked by lack of long long in XC)
 * Run minimiser over errors in order to improve coefficients for our domain.
-* Add other mathematical functions (errf etc)
+* Add other mathematical functions (atan2, errf etc)
 * Add optional check on overflows (with a compile time flag for code that has size constraints)
 * Add optional check on domain errors, eg. sqrt(-1)
 

@@ -21,7 +21,6 @@ f8_24 sinf8_24(f8_24 rad) {
     int modulo;
     f8_24 sqr;
 
-    // Now just compute a sine.
     if (rad < 0) {
         rad = -rad;
         finalSign = -1;
@@ -34,10 +33,10 @@ f8_24 sinf8_24(f8_24 rad) {
     rad -= (modulo >> 2) * PI2;
     if (modulo & 2) {
         finalSign = -finalSign;
-        rad -= PI2>>1;
+        rad -= (PI2+1)>>1;
     }
     if (modulo & 1) {
-        rad = (PI2>>1) - rad;
+        rad = ((PI2+1)>>1) - rad;
     }
     sqr = mulf8_24(rad/2, rad/2);
     return (rad + mulf8_24(mulf8_24(mulf8_24(mulf8_24(mulf8_24(r3, sqr) + r2, sqr) + r1, sqr) + r0, sqr), rad)) * finalSign;

@@ -24,3 +24,13 @@ int coshC(int x) {
     double z = (double) x / (double) (1<<24);
     return roundTrunc((1<<24)*cosh(z));
 }
+
+int sinC(int x) {
+    double z = (double) x / (double) (1<<24);
+    return roundTrunc((1<<24)*sin(z));
+}
+
+int cosC(int x) {
+    double z = (double) x / (double) (1<<24);
+    return roundTrunc((1<<24)*cos(z));
+}

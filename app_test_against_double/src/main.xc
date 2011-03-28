@@ -10,26 +10,33 @@ extern int logC(int x);
 extern int expC(int x);
 extern int sinhC(int x);
 extern int coshC(int x);
+extern int sinC(int x);
+extern int cosC(int x);
 
 #define STEPS 10
 
 int tester(int func, int data) {
     switch(func) {
-    case 0: return expf8_24(data);
-    case 1: return expC(data);
-    case 2: return logf8_24(data);
-    case 3: return logC(data);
-    case 4: return sinhf8_24(data);
-    case 5: return sinhC(data);
-    case 6: return coshf8_24(data);
-    case 7: return coshC(data);
+    case  0: return expf8_24(data);
+    case  1: return expC(data);
+    case  2: return logf8_24(data);
+    case  3: return logC(data);
+    case  4: return sinhf8_24(data);
+    case  5: return sinhC(data);
+    case  6: return coshf8_24(data);
+    case  7: return coshC(data);
+    case  8: return sinf8_24(data);
+    case  9: return sinC(data);
+    case 10: return cosf8_24(data);
+    case 11: return cosC(data);
     }
     return MINF8_24;
 }
 
-int test(int func, char name[], int min, int max, int minerror, int maxerror) {    
+int test(int func, char name[], int min, int max, int minerror, int maxerror, int permille) {    
     int hist[31];
     int fail = 0;
+    int oneBit;
 
     printstr("Testing ");
     printstrln(name);
@@ -79,18 +86,28 @@ int test(int func, char name[], int min, int max, int minerror, int maxerror) {
             printintln(hist[k]);
         }
     }
+    oneBit = hist[14] + hist[15] + hist[16];
+    oneBit = (oneBit * 1000) >> STEPS;
+    if (oneBit < permille) {
+        printstr("FAIL ");
+        fail = 1;
+    }
+    printint(oneBit);
+    printstr(" per thousand in one bit error\n");
     return fail;
 }
 
 int main(void) {
     int fail;
     printstr("Testing will take approx ");
-    printint(5 << (STEPS-8));
+    printint(10 << (STEPS-8));
     printstr(" minutes\n");
-    fail = test(0,"exp", MINF8_24, 4*ONE, -12, 3);
-    fail += test(2,"log", 1, MAXF8_24, -2, 1);
-    fail += test(4,"sinh", -11*ONE>>1, 11*ONE>>1, -40, 40);  // Should aim for -4 4.
-    fail += test(6,"cosh", -11*ONE>>1, 11*ONE>>1, -40, 40);  // Shoudl aim for -4 4
+//    fail = test(0,"exp", MINF8_24, 4*ONE, -12, 5, 990);
+//    fail += test(2,"log", 1, MAXF8_24, -2, 2, 906);
+//    fail += test(4,"sinh", -11*ONE>>1, 11*ONE>>1, -40, 40, 600);  // Should aim for -4 4 800
+//    fail += test(6,"cosh", -11*ONE>>1, 11*ONE>>1, -40, 40, 600);  // Should aim for -4 4, 800
+    fail += test(8,"sin", -2*PI2, MAXF8_24, -3, 3, 955);
+    fail += test(10,"cos", -2*PI2, MAXF8_24-2*PI2, -3, 3, 960);
     if (fail != 0) {
         printint(fail);
         printstr(" failures\n");
