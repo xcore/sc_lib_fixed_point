@@ -25,7 +25,7 @@ More details to follow in the doc directory.
 Key Features
 ============
 
-* 8.24:
+* 8.24 signed fixed point:
 
   - basic functions: mul, div, sqrt
   - emulation of manipulation of exponent and mantissa: ldexp, frexp
@@ -33,7 +33,7 @@ Key Features
   - exponential functions: exp, log, sinh, cosh
   - test harness that checks on precision against double precision C.
 
-* 32.0:
+* 32.0 unsigned fiex point:
 
   - sqrt
 
