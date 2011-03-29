@@ -5,9 +5,12 @@
 
 #include "mathf8_24.h"
 #include "print.h"
+#include "mathfuint.h"
 
 
 int main(void) {
+    printintln(sqrtuint(4))
+    printintln(sqrtuint(1000000000))
     for(int k = -8; k <= 23; k++) {
         int i = k * PIHALF / 8;
         f8_24 c = expC(i);
