@@ -26,12 +26,15 @@ Key Features
 ============
 
 * 8.24:
+
   - basic functions: mul, div, sqrt
   - emulation of manipulation of exponent and mantissa: ldexp, frexp
   - trigonometric functions: sin, cos
   - exponential functions: exp, log, sinh, cosh
   - test harness that checks on precision against double precision C.
+
 * 32.0:
+
   - sqrt
 
 To Do
