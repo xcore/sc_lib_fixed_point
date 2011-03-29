@@ -15,9 +15,9 @@ Fixed point library
 
 
 This is a library of functions that implement standard mathematical
-functions in fixed point. All functions use a "8.24" fixed point format
+functions in fixed point. One group of functions use a "8.24" fixed point format
 with 24 bits behind the binary point, and 8 bits before the binary point.
-Numbers are represented in 2's complement.
+Numbers are represented in 2's complement. Another group works on unsigned integers
 
 More details to follow in the doc directory.
 
@@ -25,11 +25,14 @@ More details to follow in the doc directory.
 Key Features
 ============
 
-* basic functions: mul, div, sqrt
-* emulation of manipulation of exponent and mantissa: ldexp, frexp
-* trigonometric functions: sin, cos
-* exponential functions: exp, log, sinh, cosh
-* test harness that checks on precision against double precision C.
+* 8.24:
+  - basic functions: mul, div, sqrt
+  - emulation of manipulation of exponent and mantissa: ldexp, frexp
+  - trigonometric functions: sin, cos
+  - exponential functions: exp, log, sinh, cosh
+  - test harness that checks on precision against double precision C.
+* 32.0:
+  - sqrt
 
 To Do
 =====
@@ -44,6 +47,9 @@ To Do
 Firmware Overview
 =================
 
+8.24
+----
+
 A collection of functions, all stored in a single module. The function
 names are suffixed with ``f8_24`` to denote that these are single precision
 fixed point functions. There are some obvious dependencies, mostly on ldexp
@@ -51,6 +57,11 @@ and frexp.
 
 Two extra functions, mulf8_24 and divf8_24 perform multiplication and division on
 fixed point numbers.
+
+32.0
+----
+
+A single function to compute sqrt
 
 Known Issues
 ============
