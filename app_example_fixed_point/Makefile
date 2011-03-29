@@ -23,7 +23,7 @@ XCC_MAP_FLAGS = -lm
 
 # The USED_MODULES variable lists other module used by the application. 
 
-USED_MODULES = module_lib_fixed_8_24
+USED_MODULES = module_lib_fixed_8_24 module_lib_uint_32
 
 #=============================================================================
 # The following part of the Makefile includes the common build infrastructure

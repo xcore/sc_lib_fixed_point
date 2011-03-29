@@ -5,20 +5,16 @@
 
 #include "mathf8_24.h"
 #include "print.h"
-#include "mathfuint.h"
+#include "mathuint.h"
 
 
 int main(void) {
-    printintln(sqrtuint(4))
-    printintln(sqrtuint(1000000000))
+    printuintln(sqrtuint(100000));
     for(int k = -8; k <= 23; k++) {
         int i = k * PIHALF / 8;
-        f8_24 c = expC(i);
         printf8_24(i);
         printstr(" ");
-        printf8_24(expf8_24(i) - c);
-        printstr(" ");
-        printf8_24(c);
+        printf8_24(expf8_24(i));
         printstr("\n");
     }
     return 0;
