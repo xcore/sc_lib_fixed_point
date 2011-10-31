@@ -3,14 +3,14 @@
 // University of Illinois/NCSA Open Source License posted in
 // LICENSE.txt and at <http://github.xcore.com/>
 
-#include "print.h"
+#include <xclib.h>
 
 unsigned int sqrtuint(unsigned int x) {
     int zeroes;
     int approx;
     int corr;
-        
-    asm("clz %0,%1" : "=r" (zeroes) : "r" (x));
+
+    zeroes = clz(x);
     
     zeroes = zeroes & ~1;
     zeroes = (32-zeroes) >> 1;
