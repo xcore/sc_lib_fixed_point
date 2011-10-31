@@ -1,0 +1,545 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>module_lib_fixed_8_24 API &mdash; Fixed point arithmetic functions v0v1 documentation</title>
+    <link rel="stylesheet" href="_static/xdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://mathjax.connectmv.com/MathJax.js"></script>
+    <script type="text/javascript" src="_static/xcomment.js"></script>
+    <link rel="top" title="Fixed point arithmetic functions v0v1 documentation" href="index.html" />
+    <link rel="prev" title="Documentation" href="index.html" /> 
+
+<script>
+function setheight() {
+h1 = document.getElementById('d1').style.height;
+h2 = document.getElementById('d2').style.height;
+
+if (parseInt(h1) > parseInt(h2)) {
+document.getElementById('d2').style.height=h1 + "px";
+}
+else {
+document.getElementById('d1').style.height=h2 + "px";
+}
+
+}
+</script>
+</head>
+
+<body onload="setheight();">
+
+  
+
+    <div class="document" id='d1'>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+<div style="float: right">
+<a href="index.html"
+                        title="previous chapter"> &lt&lt </a>
+</div>
+
+            
+  <div class="section" id="module-lib-fixed-8-24-api">
+<h1>module_lib_fixed_8_24 API<a class="headerlink" href="#module-lib-fixed-8-24-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="type-definition">
+<h2>Type definition<a class="headerlink" href="#type-definition" title="Permalink to this headline">¶</a></h2>
+<dt><dl class="type">
+<dt id="f8_24">
+<tt class="descname">f8_24</tt><a class="headerlink" href="#f8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This type describes the fixed point numbers used in this library.</p>
+<p>Values are stored in 32 bits comprising a sign bit (bit 31), 7 mantissa bits (bits 30..24), and 24 fractional bits (bits 23..0). The value of a fixed point number is defined as the the signed integer value multiplied by 2^-24. There are no representations for <em>not-a-number</em> or <em>infinite</em>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<dt><dl class="macro">
+<dt id="MINF8_24">
+<tt class="descname">MINF8_24</tt><a class="headerlink" href="#MINF8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This constant defines the smallest number that is defined in the fixed point range, which is -128.</p>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="MAXF8_24">
+<tt class="descname">MAXF8_24</tt><a class="headerlink" href="#MAXF8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This constant defines the biggest number that is defined in the fixed point range, which is 127.999999940395355224609375.</p>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="HALF">
+<tt class="descname">HALF</tt><a class="headerlink" href="#HALF" title="Permalink to this definition">¶</a></dt>
+<dd><p>This constant is the fixed point representation of the number 0.5.</p>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="ONE">
+<tt class="descname">ONE</tt><a class="headerlink" href="#ONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>This constant is the fixed point representation of the number 1.0.</p>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="PI2">
+<tt class="descname">PI2</tt><a class="headerlink" href="#PI2" title="Permalink to this definition">¶</a></dt>
+<dd><p>This constant is the closest fixed point representation of 2 PI.</p>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="PIHALF">
+<tt class="descname">PIHALF</tt><a class="headerlink" href="#PIHALF" title="Permalink to this definition">¶</a></dt>
+<dd><p>This constant is the fixed point representation of PI/2.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="basic-operations">
+<h2>Basic operations<a class="headerlink" href="#basic-operations" title="Permalink to this headline">¶</a></h2>
+<p>The addition and subtraction operators <tt class="docutils literal"><span class="pre">+</span></tt> and <tt class="docutils literal"><span class="pre">-</span></tt> can be used on fixed
+point numbers as normal. Make sure that constants are shifted up 24 places,
+ie, for a fixed point number <tt class="docutils literal"><span class="pre">f</span></tt>, the statement <tt class="docutils literal"><span class="pre">f++</span></tt> adds
+0.000000059604644775390625 not one.</p>
+<dt><dl class="function">
+<dt id="mulf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">mulf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em>, <a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;y</em><big>)</big><a class="headerlink" href="#mulf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the product of two fixed point numbers.</p>
+<p>If the product does not fit in a fixed point number, a modulo answer is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; First number to be multiplied</li>
+<li><strong>y</strong> &#8211; Second number to be multiplied</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">x*y</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="divf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">divf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em>, <a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;y</em><big>)</big><a class="headerlink" href="#divf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the division of two fixed point numbers.</p>
+<p>If the product does not fit in a fixed point number, higher bits will be lost.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; the divisor</li>
+<li><strong>y</strong> &#8211; the dividend</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">x/y</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="ldexpf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">ldexpf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;mant</em>, int<em>&nbsp;exp</em><big>)</big><a class="headerlink" href="#ldexpf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is the fixed point equivalent of <tt class="xref c c-func docutils literal"><span class="pre">ldexp()</span></tt>: given a mantissa and an exponent it computes the fixed point number with the value mant * 2 ^ exp.</p>
+<p>The reverse operation is implemented by <tt class="xref c c-func docutils literal"><span class="pre">frexp8_24()</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mant</strong> &#8211; mantissa input value represented as a fixed point number</li>
+<li><strong>exp</strong> &#8211; exponent input value, represented as a signed integer</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">math * 2 ^ exp</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="frexpf8_24">
+{<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a>,int} f <tt class="descname">frexpf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;d</em><big>)</big><a class="headerlink" href="#frexpf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This functions splits a fixed point number into a mantissa and exponent.</p>
+<p>The mantissa is either zero or in the range [0.5..1). The exponent is in the range [-32..32]. and an exponent of a fixed point number. The reverse operation is implemented by <tt class="xref c c-func docutils literal"><span class="pre">ldexp8_24()</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>d</strong> &#8211; input fixed point number</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a mantissa as an fixed point number</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>an exponent as an integer.</p>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="reducef8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">reducef8_24</tt><big>(</big>int<em>&nbsp;h</em>, unsigned<em>&nbsp;l</em><big>)</big><a class="headerlink" href="#reducef8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function clips and rounds a 16.48 fixed point number into an 8.24 fixed point number.</p>
+<p>It is used for finalising the answer out of a series of multiply accumulates. If an overflow has happened, the result is saturated to MINF8_24 or MAXF8_24. The number is rounded towards minus infinity; if rounding is required half should be added to the number, typically before the multiply accumulate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>h</strong> &#8211; high input word (two&#8217;s complement 16.16 number)</li>
+<li><strong>l</strong> &#8211; low input word to be concatenated with h to form 16.48 number</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">saturated (h:l)[bits 8..40]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="f8_242int">
+<tt class="descname">f8_242int</tt><a class="headerlink" href="#f8_242int" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function converts a fixed point number to an integer, discarding the fractional part.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; fixed point input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">integer equivalent</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="int2f8_24">
+<tt class="descname">int2f8_24</tt><a class="headerlink" href="#int2f8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function converts an integer to a fixed point number.</p>
+<p>The input number has to be in the range [-128..127]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; integer input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">fixed point equivalent</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">doxygenfunction: Cannot find function &#8220;fasbsf8_24&#8221; in doxygen xml output</p>
+</div>
+<dt><dl class="function">
+<dt id="froundf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">froundf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#froundf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function rounds a fixed point number to its nearest integral number and returns a fixed point number.</p>
+<p>The input number should be less than 127.5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">nearest integer.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="mathematical-functions">
+<h2>Mathematical functions<a class="headerlink" href="#mathematical-functions" title="Permalink to this headline">¶</a></h2>
+<dt><dl class="function">
+<dt id="sinf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">sinf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#sinf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the sine of a fixed point number in radians.</p>
+<p>The input number has to be in the range -MAXF8_24 + PI and MAXF8_24 - PI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value in radians</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">sine(x)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="cosf8_24">
+<tt class="descname">cosf8_24</tt><a class="headerlink" href="#cosf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the cosine of a fixed point number in radians.</p>
+<p>The input number has to be in the range -MAXF8_24 + PI and MAXF8_24 - PI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value in radians</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">cosine(x)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="sinhf8_24">
+<tt class="descname">sinhf8_24</tt><a class="headerlink" href="#sinhf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the hyperbolic sine (sinh) of a fixed point number.</p>
+<p>The input number has to be in the range [-5.5..5.5] in order to avoid overflow, and for values outside the [-4..4] range there are relatively large errors in the result.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">sinh(x)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="macro">
+<dt id="coshf8_24">
+<tt class="descname">coshf8_24</tt><a class="headerlink" href="#coshf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the hyperbolic cosine (cosh) of a fixed point number.</p>
+<p>The input number has to be in the range [-5.5..5.5] in order to avoid overflow, and for values outside the [-4..4] range there are relatively large errors in the result.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">sinh(x)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="sqrtf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">sqrtf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#sqrtf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the square root of a fixed point number.</p>
+<p>The input number has to be positive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value in radians</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">sqrt(x)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="expf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">expf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#expf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the natural exponent of a fixed point number.</p>
+<p>The input number has to be less than 4.8, otherwise the answer cannot be represented as a fixed point number. For input values larger than 3 there is a relatively large error in the last three bits of the answer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">e^x</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="logf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">logf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#logf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the natural logarithm (ln) of a fixed point number.</p>
+<p>The input number has to be positive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ln(x).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="log10f8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">log10f8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#log10f8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the logarithm base 10 of a fixed point number.</p>
+<p>The input number has to be positive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ln(x)/ln(10).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="input-output-functions">
+<h2>Input/Output functions<a class="headerlink" href="#input-output-functions" title="Permalink to this headline">¶</a></h2>
+<dt><dl class="function">
+<dt id="printf8_24">
+void <tt class="descname">printf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#printf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function prints a number using a decimal point.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; value to be printed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dt><dl class="function">
+<dt id="printf8_24ln">
+void <tt class="descname">printf8_24ln</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#printf8_24ln" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function prints a number using a decimal point and adds a newline.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; value to be printed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" id='d2'>
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Fixed point arithmetic functions (0v1)</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">module_lib_fixed_8_24 API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#type-definition">Type definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-operations">Basic operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mathematical-functions">Mathematical functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-output-functions">Input/Output functions</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none;margin-bottom: 10px;">
+  <h3>Search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+
+    <div class="footer">
+    </div>
+  </body>
+</html>
+
+
+
