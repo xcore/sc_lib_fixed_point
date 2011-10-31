@@ -42,9 +42,9 @@ ie, for a fixed point number ``f``, the statement ``f++`` adds
 
 .. doxygenfunction:: reducef8_24
 
-.. doxygendefine:: f8_242int
+.. doxygenfunction:: f8_24toint
 
-.. doxygendefine:: int2f8_24
+.. doxygenfunction:: inttof8_24
 
 .. doxygenfunction:: fabsf8_24
 
@@ -55,11 +55,11 @@ Mathematical functions
 
 .. doxygenfunction:: sinf8_24
 
-.. doxygendefine:: cosf8_24
+.. doxygenfunction:: cosf8_24
 
-.. doxygendefine:: sinhf8_24
+.. doxygenfunction:: sinhf8_24
 
-.. doxygendefine:: coshf8_24
+.. doxygenfunction:: coshf8_24
 
 .. doxygenfunction:: sqrtf8_24
 

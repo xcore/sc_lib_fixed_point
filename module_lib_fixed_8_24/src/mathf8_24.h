@@ -123,7 +123,9 @@ extern f8_24 sinf8_24(f8_24 x);
  * \param x input value in radians
  * \returns cosine(x)
  **/
-#define cosf8_24(x) sinf8_24((x)+PIHALF)
+inline f8_24 cosf8_24(f8_24 x) {
+    return sinf8_24(x+PIHALF);
+}
 
 /** This function returns the natural exponent of a fixed point number. The
  * input number has to be less than 4.8, otherwise the answer cannot be
@@ -156,7 +158,9 @@ extern f8_24 sinehf8_24(f8_24 x, int cosine);
  * \param x input value
  * \returns sinh(x)
  **/
-#define sinhf8_24(x) sinehf8_24((x), 0)
+inline f8_24 sinhf8_24(f8_24 x) {
+    return sinehf8_24(x, 0);
+}
 
 /** This function returns the hyperbolic cosine (cosh) of a fixed point
  * number. The input number has to be in the range [-5.5..5.5] in order to
@@ -166,7 +170,9 @@ extern f8_24 sinehf8_24(f8_24 x, int cosine);
  * \param x input value
  * \returns sinh(x)
  **/
-#define coshf8_24(x) sinehf8_24((x), 1)
+inline f8_24 coshf8_24(f8_24 x) {
+    return sinehf8_24(x, 1);
+}
 
 /** This function returns the square root of a fixed point number.
  * The input number has to be positive.
@@ -207,7 +213,9 @@ extern void printf8_24ln(f8_24 x);
  * \param x fixed point input value
  * \returns integer equivalent
  **/
-#define f8_242int(x) ((x) >> MATHF8_24_BITS)
+inline f8_24 f8_24toint(f8_24 x) {
+    return x >> MATHF8_24_BITS;
+}
 
 /** This function converts an integer to a fixed point number. The input
  * to int2f8_24() has to be in the range [-128..127].
@@ -215,7 +223,9 @@ extern void printf8_24ln(f8_24 x);
  * \param x integer input value
  * \returns fixed point equivalent
  **/
-#define int2f8_24(x) ((x) << MATHF8_24_BITS)
+inline f8_24 inttof8_24(f8_24 x) {
+    return x << MATHF8_24_BITS;
+}
 
 
 /** This function rounds a fixed point number to its nearest integral

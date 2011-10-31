@@ -29,7 +29,7 @@ f8_24 sinf8_24(f8_24 rad) {
     }
     // Now rad >= 0.
 
-    modulo = f8_242int(mulf8_24(rad, ONE_OVER_HALFPI));
+    modulo = f8_24toint(mulf8_24(rad, ONE_OVER_HALFPI));
     rad -= (modulo >> 2) * PI2;
     if (modulo & 2) {
         finalSign = -finalSign;

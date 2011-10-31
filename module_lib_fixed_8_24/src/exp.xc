@@ -30,7 +30,7 @@
  */
 f8_24 expf8_24(f8_24 x) {
     f8_24  XN = froundf8_24(mulf8_24(x,ONE_OVER_LN2));
-    int N = f8_242int(XN);
+    int N = f8_24toint(XN);
     f8_24 g = (x - N*C1) - N*C2;
     f8_24 z = mulf8_24(g,g);
     f8_24 gP = mulf8_24(mulf8_24(p1a, z) + p0a, g);

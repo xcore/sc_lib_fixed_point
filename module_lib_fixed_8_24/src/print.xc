@@ -12,13 +12,13 @@ void printf8_24(f8_24 x) {
         printchar('-');
         x = -x;
     }
-    N = f8_242int(x);
+    N = f8_24toint(x);
     printint(N);
     printstr(".");
     for(int i = 0; i < 8; i++) {
-        x = x - int2f8_24(N);
+        x = x - inttof8_24(N);
         x = x * 10;
-        N = f8_242int(x);
+        N = f8_24toint(x);
         printchar(N+'0');
     }
 }

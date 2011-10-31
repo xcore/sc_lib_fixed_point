@@ -14,7 +14,7 @@ void printsine(void) {
         printstr("sin ");
         printf8_24(rad);
         printstr(" = ");
-        printf8_24ln(sinf8_24(rad));
+        printf8_24ln(cosf8_24(rad));
     }
 }
 //::
@@ -39,6 +39,8 @@ int main(void) {
         printf8_24(i);
         printstr(" ");
         printf8_24(expf8_24(i));
+        printstr(" ");
+        printf8_24(sinhf8_24(i));
         printstr("\n");
     }
     return 0;
