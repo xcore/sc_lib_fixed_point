@@ -1,6 +1,9 @@
 module_lib_fixed_8_24 API
 =========================
 
+The funcionality is exported in the include file ``mathf8_24.h``. THis file
+should be included in all XC and C files that use this library.
+
 Type definition
 ---------------
 
@@ -43,7 +46,7 @@ ie, for a fixed point number ``f``, the statement ``f++`` adds
 
 .. doxygendefine:: int2f8_24
 
-.. doxygenfunction:: fasbsf8_24
+.. doxygenfunction:: fabsf8_24
 
 .. doxygenfunction:: froundf8_24
 
@@ -72,3 +75,13 @@ Input/Output functions
 .. doxygenfunction:: printf8_24
 
 .. doxygenfunction:: printf8_24ln
+
+Example program
+---------------
+
+Below is an example function that prints out the values of a sine wave:
+
+.. literalinclude:: app_example_fixed_point/src/main.xc
+  :start-after: //:: Example code to print a sine wave
+  :end-before: //::
+

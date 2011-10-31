@@ -10,6 +10,9 @@ unsigned int sqrtuint(unsigned int x) {
     int approx;
     int corr;
 
+    if (x < 2) {
+        return x;
+    }
     zeroes = clz(x);
     
     zeroes = zeroes & ~1;

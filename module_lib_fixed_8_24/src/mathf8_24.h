@@ -67,7 +67,7 @@ extern f8_24 mulf8_24(f8_24 x, f8_24 y);
  *
  * \param x the divisor
  * \param y the dividend
- * \returns x/y
+ * \returns x / y
  **/
 extern f8_24 divf8_24(f8_24 x, f8_24 y);
 
@@ -210,7 +210,7 @@ extern void printf8_24ln(f8_24 x);
 #define f8_242int(x) ((x) >> MATHF8_24_BITS)
 
 /** This function converts an integer to a fixed point number. The input
- * number has to be in the range [-128..127]
+ * to int2f8_24() has to be in the range [-128..127].
  *
  * \param x integer input value
  * \returns fixed point equivalent
@@ -219,8 +219,8 @@ extern void printf8_24ln(f8_24 x);
 
 
 /** This function rounds a fixed point number to its nearest integral
- * number and returns a fixed point number. The input number should be less
- * than 127.5.
+ * number and returns a fixed point number. The input to froundf8_24()
+ * should be less than 127.5.
  *
  * \param x input value
  * \returns nearest integer.
