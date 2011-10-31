@@ -58,6 +58,8 @@ document.getElementById('d1').style.height=h2 + "px";
             
   <div class="section" id="module-lib-fixed-8-24-api">
 <h1>module_lib_fixed_8_24 API<a class="headerlink" href="#module-lib-fixed-8-24-api" title="Permalink to this headline">¶</a></h1>
+<p>The funcionality is exported in the include file <tt class="docutils literal"><span class="pre">mathf8_24.h</span></tt>. THis file
+should be included in all XC and C files that use this library.</p>
 <div class="section" id="type-definition">
 <h2>Type definition<a class="headerlink" href="#type-definition" title="Permalink to this headline">¶</a></h2>
 <dt><dl class="type">
@@ -150,7 +152,7 @@ ie, for a fixed point number <tt class="docutils literal"><span class="pre">f</s
 </ul>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">x/y</p>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">x / y</p>
 </td>
 </tr>
 </tbody>
@@ -223,9 +225,9 @@ ie, for a fixed point number <tt class="docutils literal"><span class="pre">f</s
 </table>
 </dd></dl>
 
-<dt><dl class="macro">
-<dt id="f8_242int">
-<tt class="descname">f8_242int</tt><a class="headerlink" href="#f8_242int" title="Permalink to this definition">¶</a></dt>
+<dt><dl class="function">
+<dt id="f8_24toint">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">f8_24toint</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#f8_24toint" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function converts a fixed point number to an integer, discarding the fractional part.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -243,11 +245,11 @@ ie, for a fixed point number <tt class="docutils literal"><span class="pre">f</s
 </table>
 </dd></dl>
 
-<dt><dl class="macro">
-<dt id="int2f8_24">
-<tt class="descname">int2f8_24</tt><a class="headerlink" href="#int2f8_24" title="Permalink to this definition">¶</a></dt>
+<dt><dl class="function">
+<dt id="inttof8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">inttof8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#inttof8_24" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function converts an integer to a fixed point number.</p>
-<p>The input number has to be in the range [-128..127]</p>
+<p>The input to <tt class="xref c c-func docutils literal"><span class="pre">int2f8_24()</span></tt> has to be in the range [-128..127].</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -264,15 +266,32 @@ ie, for a fixed point number <tt class="docutils literal"><span class="pre">f</s
 </table>
 </dd></dl>
 
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">doxygenfunction: Cannot find function &#8220;fasbsf8_24&#8221; in doxygen xml output</p>
-</div>
+<dt><dl class="function">
+<dt id="fabsf8_24">
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">fabsf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#fabsf8_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the absolute value of a fixed point number.</p>
+<p>The input value has to be in the range [-MAXF8_24..MAXF8_24]; the absolute value of MINF8_24 cannot be represented as a fixed point number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; input value</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a href="#id1"><span class="problematic" id="id2">|x|</span></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dt><dl class="function">
 <dt id="froundf8_24">
 <a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">froundf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#froundf8_24" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function rounds a fixed point number to its nearest integral number and returns a fixed point number.</p>
-<p>The input number should be less than 127.5.</p>
+<p>The input to <a class="reference internal" href="#froundf8_24" title="froundf8_24"><span>froundf8_24()</span></a> should be less than 127.5.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -313,9 +332,9 @@ ie, for a fixed point number <tt class="docutils literal"><span class="pre">f</s
 </table>
 </dd></dl>
 
-<dt><dl class="macro">
+<dt><dl class="function">
 <dt id="cosf8_24">
-<tt class="descname">cosf8_24</tt><a class="headerlink" href="#cosf8_24" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">cosf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#cosf8_24" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the cosine of a fixed point number in radians.</p>
 <p>The input number has to be in the range -MAXF8_24 + PI and MAXF8_24 - PI.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -334,9 +353,9 @@ ie, for a fixed point number <tt class="docutils literal"><span class="pre">f</s
 </table>
 </dd></dl>
 
-<dt><dl class="macro">
+<dt><dl class="function">
 <dt id="sinhf8_24">
-<tt class="descname">sinhf8_24</tt><a class="headerlink" href="#sinhf8_24" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">sinhf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#sinhf8_24" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the hyperbolic sine (sinh) of a fixed point number.</p>
 <p>The input number has to be in the range [-5.5..5.5] in order to avoid overflow, and for values outside the [-4..4] range there are relatively large errors in the result.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -355,9 +374,9 @@ ie, for a fixed point number <tt class="docutils literal"><span class="pre">f</s
 </table>
 </dd></dl>
 
-<dt><dl class="macro">
+<dt><dl class="function">
 <dt id="coshf8_24">
-<tt class="descname">coshf8_24</tt><a class="headerlink" href="#coshf8_24" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a> <tt class="descname">coshf8_24</tt><big>(</big><a class="reference internal" href="#f8_24" title="f8_24"><span>f8_24</span></a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#coshf8_24" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the hyperbolic cosine (cosh) of a fixed point number.</p>
 <p>The input number has to be in the range [-5.5..5.5] in order to avoid overflow, and for values outside the [-4..4] range there are relatively large errors in the result.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -498,6 +517,22 @@ void <tt class="descname">printf8_24ln</tt><big>(</big><a class="reference inter
 </dd></dl>
 
 </div>
+<div class="section" id="example-program">
+<h2>Example program<a class="headerlink" href="#example-program" title="Permalink to this headline">¶</a></h2>
+<p>Below is an example function that prints out the values of a sine wave:</p>
+<div class="highlight-none"><div class="highlight"><pre>#include &quot;mathf8_24.h&quot;
+
+void printsine(void) {
+    for(f8_24 rad = 0; rad &lt;= PI2; rad += PI2/20) {
+        printstr(&quot;sin &quot;);
+        printf8_24(rad);
+        printstr(&quot; = &quot;);
+        printf8_24ln(cosf8_24(rad));
+    }
+}
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -515,6 +550,7 @@ void <tt class="descname">printf8_24ln</tt><big>(</big><a class="reference inter
 <li class="toctree-l2"><a class="reference internal" href="#basic-operations">Basic operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mathematical-functions">Mathematical functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#input-output-functions">Input/Output functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-program">Example program</a></li>
 </ul>
 </li>
 </ul>
