@@ -9,7 +9,16 @@
 
 
 int main(void) {
+    printuintln(sqrtuint(4));
+    printuintln(sqrtuint(10));
+    printuintln(sqrtuint(100));
+    printuintln(sqrtuint(1000));
+    printuintln(sqrtuint(10000));
     printuintln(sqrtuint(100000));
+    printuintln(sqrtuint(1000000));
+    printuintln(sqrtuint(10000000));
+    printuintln(sqrtuint(100000000));
+    printuintln(sqrtuint(1000000000));
     for(int k = -8; k <= 23; k++) {
         int i = k * PIHALF / 8;
         printf8_24(i);
