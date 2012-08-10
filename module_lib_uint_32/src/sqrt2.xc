@@ -4,6 +4,7 @@
 // LICENSE.txt and at <http://github.xcore.com/>
 
 #include <xclib.h>
+#include <mathuint.h>
 
 unsigned int sqrtuint(unsigned int x) {
     int zeroes;
