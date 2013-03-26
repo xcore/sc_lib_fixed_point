@@ -1,7 +1,7 @@
 TARGET = XK-1
 APP_NAME =
 XCC_FLAGS = -O2
-USED_MODULES = module_lib_fixed_8_24 module_lib_uint_32 module_lib_uint_64
+USED_MODULES = module_lib_fixed_8_24 module_lib_uint_32 
 
 #=============================================================================
 # The following part of the Makefile includes the common build infrastructure
