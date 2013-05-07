@@ -1,14 +1,15 @@
 # The TARGET variable determines what target system the application is 
 # compiled for. It either refers to an XN file in the source directories
 # or a valid argument for the --target option when compiling.
-
-TARGET = XK-1
+TARGET = XK-1A
 
 # The APP_NAME variable determines the name of the final .xe file. It should
 # not include the .xe postfix. If left blank the name will default to 
 # the project name
+APP_NAME =
 
-APP_NAME = app_test_against_double
+# The USED_MODULES variable lists other module used by the application. 
+USED_MODULES = module_lib_fixed_8_24
 
 # The flags passed to xcc when building the application
 # You can also set the following to override flags for a particular language:
@@ -17,22 +18,11 @@ APP_NAME = app_test_against_double
 #
 # If the variable XCC_MAP_FLAGS is set it overrides the flags passed to 
 # xcc for the final link (mapping) stage.
-
 XCC_FLAGS = -O2
 XCC_MAP_FLAGS = -lm
 
-# The USED_MODULES variable lists other module used by the application. 
-
-USED_MODULES = module_lib_fixed_8_24
-
-#=============================================================================
-# The following part of the Makefile includes the common build infrastructure
-# for compiling XMOS applications. You should not need to edit below here.
-
-
-# Use the main Makefile from module_xcommon
--include ../module_xcommon/build/Makefile.common
--include ../../xcommon/module_xcommon/build/Makefile.common
+XMOS_MAKE_PATH ?= ../..
+-include $(XMOS_MAKE_PATH)/xcommon/module_xcommon/build/Makefile.common
 
 # The final target of the build. This is usually dependent on a binary file
 # in the $(BIN_DIR) directory e.g.
@@ -41,9 +31,3 @@ USED_MODULES = module_lib_fixed_8_24
 
 test: all
 	xsim $(BIN_DIR)/$(APP_NAME).xe
-
-all: $(BIN_DIR)/$(APP_NAME).xe
-	@echo Build Complete
-
-
-clean: clean_common
