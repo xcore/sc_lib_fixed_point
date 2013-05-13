@@ -14,5 +14,5 @@ unsigned hypot(int x, int y) {
     unsigned l;
     {h,l} = macs(x, x, 0, 0);
     {h,l} = macs(y, y, h, l);
-    return sqrt2(h, l);
+    return sqrtuint2(h, l);
 }
